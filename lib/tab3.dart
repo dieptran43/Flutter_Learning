@@ -7,7 +7,10 @@ class Tab3 extends StatelessWidget {
     return new Center(
       child: new Text(
         "This is Chat Tab",
-        style: new TextStyle(fontSize: 25.0),
+        style: new TextStyle(fontSize: 35.0,
+        fontFamily: 'CrimsonText',
+      
+        ),
       ),
     );
   }
