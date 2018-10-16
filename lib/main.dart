@@ -4,53 +4,128 @@
  */
 import 'package:flutter/material.dart';
 
-void main() =>runApp(new MyApp());
+void main() => runApp(new MyApp());
 
-class MyApp extends StatelessWidget{
+class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context){
-    var card = new Card(
-      child: new Column(
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: 'Drawer in Flutter',
+      home: new MainPage(),
+    );
+  }
+}
+
+class MainPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return new MainPageState();
+  }
+}
+
+class MainPageState extends State<MainPage> {
+  var title = '';
+  Drawer _buildDrawer(context) {
+    return new Drawer(
+      child: new ListView(
+        padding: EdgeInsets.zero,
         children: <Widget>[
-          new ListTile(
-            leading: new Icon(Icons.account_box, color: Colors.blue, size: 26.0,),
-            title: new Text("Le Van Diep", style: new TextStyle(fontWeight: FontWeight.w400)),
-            subtitle: new Text("Sofware developer"),
+          new DrawerHeader(
+            child: new Container(
+              child: new Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  new Image.asset(
+                    'images/image00.JPEG',
+                    width: 80.0,
+                    height: 80.0,
+                    fit: BoxFit.cover,
+                  ),
+                  new Text(
+                    'Le Dieu Phuc',
+                    style: new TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                  new Text(
+                    'Supper Software Developer',
+                    style: new TextStyle(
+                        color: Colors.white, fontStyle: FontStyle.italic),
+                  )
+                ],
+              ),
+            ),
+            decoration: new BoxDecoration(color: Colors.blue),
           ),
-          new Divider(color: Colors.blue,indent: 16.0),
           new ListTile(
-            leading: new Icon(Icons.email, color: Colors.blue, size:26.0),
-            title: new Text("levandiep44@gmail.com", style: new TextStyle(fontWeight: FontWeight.w400),),
+            leading: new Icon(Icons.photo_album),
+            title: new Text('Photos'),
+            onTap: () {
+              setState(() {
+                this.title = 'This is Photos page';
+              });
+              Navigator.pop(context);
+            },
           ),
           new ListTile(
-            leading: new Icon(Icons.phone, color: Colors.blue, size: 26.0,),
-            title: new Text("+84-123456789", style: new TextStyle(fontWeight: FontWeight.w300),),
+            leading: new Icon(Icons.notifications),
+            title: new Text('Notifications'),
+            onTap: () {
+              setState(() {
+                this.title = 'This is Photos page';
+              });
+              Navigator.pop(context);
+            },
+          ),
+          new ListTile(
+              leading: new Icon(Icons.settings),
+              title: new Text('Settings'),
+              onTap: () {
+                setState(() {
+                  this.title = 'This is Settings';
+                });
+                Navigator.pop(context);
+              }),
+          new Divider(
+            color: Colors.black45,
+            indent: 16.0,
+          ),
+          new ListTile(
+            title: new Text('About Us'),
+            onTap: () {
+              setState(() {
+                this.title = 'About page';
+              });
+              Navigator.pop(context);
+            },
+          ),
+          new ListTile(
+            title: new Text('Privacy'),
+            onTap: () {
+              setState(() {
+                this.title = 'This is Privacy page';
+              });
+              Navigator.pop(context);
+            },
           )
         ],
       ),
     );
+  }
 
-    final sizeBox = new Container(
-      margin: new EdgeInsets.only(top: 30.0, left: 10.0, right: 10.0),
-      child: new SizedBox(
-        height: 220.0,
-        child: card,
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('Drawer in flutter'),
       ),
-    );
-
-    final center = new Center(
-      child: sizeBox,
-    );
-
-    return new MaterialApp(
-      title: "",
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text("Card example"),
+      body: new Center(
+        child: new Text(
+          this.title,
+          style: new TextStyle(fontSize: 30.0, fontWeight: FontWeight.w700),
         ),
-        body: sizeBox,
       ),
-      
+      drawer: _buildDrawer(context),
     );
   }
 }
