@@ -7,6 +7,7 @@ import 'mainpage.dart';
 import 'loginPage.dart';
 import 'url_Image.dart';
 import 'listView_LoadMore.dart';
+import 'horizontalListView.dart';
 
 void main() => runApp(new MyApp());
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Get URL Images',
-      home: new ListViewLoadMore(),
+      home: new HorizontalList(),
     );
   }
 }
